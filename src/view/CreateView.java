@@ -190,7 +190,7 @@ public class CreateView extends JPanel implements ActionListener {
 	
 	private void initStreetField() {
 		JLabel label = new JLabel("Street", SwingConstants.RIGHT);
-		label.setBounds(50, 50, 95, 35);
+		label.setBounds(300, 300, 95, 35);
 		label.setLabelFor(streetField);
 		label.setFont(new Font("DialogInput", Font.BOLD, 14));
 		
