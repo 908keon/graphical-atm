@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import controller.ViewManager;
 
@@ -13,6 +16,11 @@ import controller.ViewManager;
 public class HomeView extends JPanel implements ActionListener {
 	
 	private ViewManager manager;		// manages interactions between the views, model, and database
+	private JButton logoutButton;
+	private JTextField accountField;
+	private JPasswordField pinField;
+	
+	private final static String LOGOUT = "Logout";
 	
 	/**
 	 * Constructs an instance (or objects) of the HomeView class.
@@ -34,13 +42,8 @@ public class HomeView extends JPanel implements ActionListener {
 	 */
 	
 	private void initialize() {
-		
-		// TODO
-		//
-		// this is a placeholder for this view and should be removed once you start
-		// building the HomeView.
-		
-		this.add(new javax.swing.JLabel("HomeView", javax.swing.SwingConstants.CENTER));
+		this.setLayout(null);
+		initLogoutButton();
 		
 		// TODO
 		//
@@ -49,6 +52,14 @@ public class HomeView extends JPanel implements ActionListener {
 		//
 		// feel free to use my layout in LoginView as an example for laying out and
 		// positioning your components.
+	}
+	
+	private void initLogoutButton() {	
+		logoutButton = new JButton("Logout");
+		logoutButton.setBounds(205, 180, 200, 35);
+		logoutButton.addActionListener(this);
+		
+		this.add(logoutButton);
 	}
 	
 	/*
@@ -72,13 +83,13 @@ public class HomeView extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
 		
-		// TODO
-		//
-		// this is where you'll setup your action listener, which is responsible for
-		// responding to actions the user might take in this view (an action can be a
-		// user clicking a button, typing in a textfield, etc.).
-		//
-		// feel free to use my action listener in LoginView.java as an example.
+		switch (e.getActionCommand()) {
+			case LOGOUT: 
+				manager.switchTo(ATM.LOGIN_VIEW); 
+				break;
+			default: System.err.println("ERROR: Action command not found (" + e.getActionCommand() + ")"); break;
+		}
 	}
 }
